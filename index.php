@@ -33,5 +33,5 @@
         }
     }
     require_once 'formulario-login.php';
-    require_once 'footer/index.php';
+    // require_once 'footer/index.php';
 ?>
