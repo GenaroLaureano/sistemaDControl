@@ -19,37 +19,28 @@ include '../sidebar/index.php';
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
+							<strong>¡Correcto!</strong> Corte realizada correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "2"){
 					?>
-					<div class="alert alert-info">
-							<strong>Venta cancelada</strong>
-						</div>
-					<?php
-				}else if($_GET["status"] === "3"){
-					?>
-					<div class="alert alert-info">
-							<strong>Ok</strong> Producto quitado de la lista
-						</div>
-					<?php
-				}else if($_GET["status"] === "4"){
-					?>
 					<div class="alert alert-warning">
-							<strong>Error:</strong> El producto que buscas no existe
-						</div>
-					<?php
-				}else if($_GET["status"] === "5"){
-					?>
-					<div class="alert alert-danger">
-							<strong>Error: </strong>El producto está agotado
+							<strong>No hay acciones para realizar el corte</strong>
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else{
 					?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> Algo salió mal mientras se realizaba la corte
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}
@@ -58,7 +49,6 @@ include '../sidebar/index.php';
 		<br>
 		<?php
 			if(isset($_GET["corte"])){
-			// if($_GET['corte'] === "1"){ 
 		?>
 			<a href="agregarACorte.php" class="btn btn-primary">Actualizar Corte</a>
 			<br><br>

@@ -31,8 +31,10 @@
                     <div class="card-body">
                         <form method="post" action="agregarCaja.php">
                             <label for="cuenta">Inicio con:</label>
-                            <input autocomplete="off" autofocus class="form-control" name="cuenta" required type="text"
-                            id="cuenta" placeholder="Ingresa la cantidad con que inicia el turno">
+                            <input autocomplete="off" autofocus class="form-control" name="cuenta" required type="number"
+                            id="cuenta" placeholder="Ingrese la cantidad con que inicia el turno">
+                            <br>
+                            <button type="submit" class="btn btn-light"><i class="fas fa-plus-circle"></i> Registrar</button>
                         </form>
                     </div>
                 </div>

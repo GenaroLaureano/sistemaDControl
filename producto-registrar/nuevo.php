@@ -9,8 +9,6 @@ $codigo = $_POST["codigo"];
 $descripcion = $_POST["descripcion"];
 
 
-
-
 $sqlInsert ="INSERT INTO productos VALUES (null,'$codigo','$descripcion');";
 $conn->query($sqlInsert);
 
@@ -20,7 +18,5 @@ if($valor === -1){
 	header("Location: index.php?status=6");
 	exit;
 }
-
 	header("Location: index.php?status=1");
-
 ?>

@@ -29,6 +29,10 @@ foreach ($_SESSION["Baja"] as $producto) {
     // $conn->query($sqlUpdate);
     $sqlUpdate = "UPDATE sucursal SET existencia = existencia - $cantidad WHERE producto = $id;";
     $conn->query($sqlUpdate);
+    if(!$conn){
+    header("Location: index.php?status=10");
+        exit;
+    }
 }
 
 // $base_de_datos->commit();

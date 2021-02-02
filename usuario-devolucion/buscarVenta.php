@@ -30,6 +30,6 @@ if($ventas['estado'] === 'DEVOLUCION'){
 }
 
 $_SESSION['devolucion'] = $ventas;
-header("Location: index.php");
+header("Location: index.php?busqueda=1");
 
 ?>

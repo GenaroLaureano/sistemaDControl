@@ -16,7 +16,7 @@ $granTotal = 0;
   <div class="content-wrapper">
   <div class="content">
 	<div class="col-xs-12">
-		<h1><i class="fas fa-minus"></i> Surtir</h1>
+		<h1><i class="fas fa-cart-plus"></i> Surtir</h1>
 
   
       <!-- <br><br> -->

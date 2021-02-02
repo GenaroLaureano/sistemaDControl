@@ -25,37 +25,55 @@ $granTotal = 0;
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
+							<strong>¡Correcto!</strong> Baja realizada correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "2"){
 					?>
-					<div class="alert alert-info">
-							<strong>Venta cancelada</strong>
+					<div class="alert alert-warning">
+							<strong>Existencia insuficiente</strong>
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "3"){
 					?>
-					<div class="alert alert-info">
-							<strong>Ok</strong> Producto quitado de la lista
+					<div class="alert alert-warning">
+							<strong>Error: </strong>El producto está agotado
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "4"){
 					?>
-					<div class="alert alert-warning">
-							<strong>Error:</strong> El producto que buscas no existe
+					<div class="alert alert-info">
+							<strong>Se cancelo la baja correctamente</strong>
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "5"){
 					?>
 					<div class="alert alert-danger">
-							<strong>Error: </strong>El producto está agotado
+							<strong>Error: </strong>No se encontro el producto
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else{
 					?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> Algo salió mal mientras se realizaba la baja
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}

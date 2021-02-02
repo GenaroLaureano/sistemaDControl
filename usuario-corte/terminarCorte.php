@@ -15,7 +15,6 @@ if(!$conn){
     header("Location: index.php?status=6");
     exit;
 }
-
 $entradas = $_SESSION['entrada'];
 $ventas = $_SESSION['ventas'];
 

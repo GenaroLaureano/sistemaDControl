@@ -7,9 +7,9 @@ if(!isset($_POST["sucursal"]) || !isset($_POST["codigo"]) || !isset($_POST["prec
 include '../database/conexion.php';
 $sucursal = $_POST["sucursal"];
 $codigo = $_POST["codigo"];
-$precioVenta = $_POST["precioVenta"];
-$precioCompra = $_POST["precioCompra"];
-$existencia = $_POST["existencia"];
+$precioVenta = abs($_POST["precioVenta"]);
+$precioCompra = abs($_POST["precioCompra"]);
+$existencia = abs($_POST["existencia"]);
 
 $sqlInsert ="INSERT INTO sucursal VALUES (null,$codigo,$precioCompra,$precioVenta,$existencia,$sucursal);";
 $conn->query($sqlInsert);

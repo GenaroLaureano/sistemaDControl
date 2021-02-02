@@ -33,32 +33,63 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-            <i class="fas fa-money-bill-wave"></i>
+          
+          
+              <li class="nav-item has-treeview">
+
+            <a href="../index.php" class="nav-link">
+            <!-- <i class="fas fa-money-bill-wave"></i> -->
+            <i class="fas fa-cash-register"></i>
             <!-- <i class="nav-icon fas fa-edit"></i> -->
               <p>
-                Ventas
+                Caja
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+            </li>
+
+            <li class="nav-item has-treeview">
+
+<a href="../usuario-corte/index.php" class="nav-link">
+<!-- <i class="fas fa-money-bill-wave"></i> -->
+<i class="fas fa-cut"></i>
+<!-- <i class="nav-icon fas fa-edit"></i> -->
+  <p>
+    Corte
+    <!-- <i class="right fas fa-angle-left"></i> -->
+  </p>
+</a>
+</li>
+          
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+            <i class="fas fa-redo"></i>
+            <!-- <i class="nav-icon fas fa-edit"></i> -->
+              <p>
+                Devoluciones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <?php
+            if($_SESSION['nivel']===1){ 
+          echo $_SESSION['userName'];
+          ?>
               <li class="nav-item">
-                <a href="../index.php" class="nav-link">
+                <a href="../administrador-devoluciones/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ventas</p>
+                  <p>Consultar</p>
                 </a>
               </li>
+              <?php
+            }
+          ?>
+
               <li class="nav-item">
                 <a href="../usuario-devolucion/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Devolución</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../usuario-corte/index.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Corte</p>
+                  <p>Hacer una devolución</p>
                 </a>
               </li>
             </ul>
@@ -74,16 +105,39 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../usuario-baja/index.php" class="nav-link">
+            
+              
+            <li class="nav-item">
+                <a href="../producto-registrar/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Baja</p>
+                  <p>Nuevo producto</p>
                 </a>
               </li>
+            
+              <li class="nav-item">
+                <a href="../producto-surtir/index.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Agregar producto</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="../producto-agregar/index.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Surtir sucursal</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="../usuario-consulta/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Consultar</p>
+                  <p>Consultar producto</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../usuario-baja/index.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dar de baja producto</p>
                 </a>
               </li>
             </ul>
@@ -103,44 +157,7 @@
               <li class="nav-item">
                 <a href="../usuario-sucursales/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Consultar</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-            <i class="fas fa-store-alt"></i>
-              <p>
-                Administrador
-                <i class="fas fa-angle-left right"></i>
-                <!-- <span class="badge badge-info right">6</span> -->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../producto-registrar/index.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registra productos</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../producto-surtir/index.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agregar Producto</p>
-                </a>
-              </li>
-            </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../producto-agregar/index.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Surtir Producto</p>
+                  <p>Consultar existencia</p>
                 </a>
               </li>
             </ul>

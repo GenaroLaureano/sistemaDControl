@@ -39,7 +39,7 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 		<br>
 		<form method="post" action="agregarABusqueda.php">
 			<label for="codigo">Código:</label>
-			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escriba el código del producto">
+			<input autocomplete="off" autofocus class="form-control" name="codigo" type="text" id="codigo" placeholder="Escriba el código del producto">
 			<br>
 			<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
 		</form>
@@ -48,10 +48,11 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 
 
 		<?php
-		if($_SESSION['busqueda'] != []){
-			$producto = $_SESSION['busqueda'];
-		?>
+		if(isset($_GET["busqueda"])){
+			if($_GET['busqueda'] === "1"){
+				$producto = $_SESSION['busqueda'];
 
+		?>
 			<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -62,18 +63,58 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 				</tr>
 			</thead>
 			<tbody>
+			
 				<tr>
 					<td><?php echo $producto['codigo'] ?></td>
 					<td><?php echo $producto['descripcion'] ?></td>
 					<td><?php echo $producto['precioVenta'] ?></td>
 					<td><?php echo $producto['existencia'] ?></td>
 				</tr>
+			
 			</tbody>
 		</table>
 
 		<?php
+		}
+		}else{
+			// 	$producto = $_SESSION['busqueda'];
+			include '../database/conexion.php';
+			$sqlSelect = "SELECT productos.codigo, productos.descripcion ,sucursal.precioVenta, sucursal.existencia
+			FROM sucursal INNER JOIN productos ON sucursal.producto = productos.id  WHERE sucursal.sucursal=$sucursal;";
+			$resultSet = $conn->query($sqlSelect);
+			
+			if($resultSet->num_rows >0 ){
+		?>	
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th>Existencia</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php 
+			while($producto = $resultSet->fetch_assoc()){
+			?>
+				<tr>
+					<td><?php echo $producto['codigo'] ?></td>
+					<td><?php echo $producto['descripcion'] ?></td>
+					<td><?php echo $producto['precioVenta'] ?></td>
+					<td><?php echo $producto['existencia'] ?></td>
+				</tr>
+			<?php
 			}
-		?>
+			?>
+			</tbody>
+		</table>
+
+		<?php
+			
+		}}
+
+			?>
 	</div>
   </div>
   </div>

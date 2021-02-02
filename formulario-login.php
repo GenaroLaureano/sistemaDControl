@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
             <div class="card">
-                <div class="card-header bg-info text-white text-center">
+                <div class="card-header bg-primary text-white text-center">
                     <h2>Login</h2>
                 </div>
                 <div class="card-body">

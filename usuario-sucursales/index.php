@@ -92,17 +92,22 @@ $granTotal = 0;
 				}
 			}
 		?>
-		<br><br>
-		<input type="submit"class="btn btn-success" value="Consultar" > 
 		</select>
+		<br>
+		<input type="submit"class="btn btn-primary" value="Consultar" > 
+
 		</form>
+		<br>
 		<?php
 
 		if(isset($_POST['sucursal'])){
 			if($_POST['sucursal']===''){
 				?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> No se pudo realizar la busqueda
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 					exit;

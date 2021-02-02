@@ -12,27 +12,14 @@ FROM sucursal INNER JOIN productos on productos.id = sucursal.producto WHERE pro
 $resultSet = $conn->query($sqlSelect);
 
 if(!$resultSet->num_rows > 0){
-    header("Location: index.php?status=4");
+    header("Location: index.php?status=5");
     exit;
 }
 
 $producto = $resultSet->fetch_assoc();
-// $producto = $row;
-// $producto = $datos['']
-// print_r($producto);
-// printf($producto);
-// $resultSet->num_rows > 0
-// $sentencia = $base_de_datos->prepare("SELECT * FROM productos WHERE codigo = ? LIMIT 1;"); //manda a llamar el producto con el codigo
-// $sentencia->execute([$codigo]); 
-// $producto = $sentencia->fetch(PDO::FETCH_OBJ);
-# Si no existe, salimos y lo indicamos
-// if (!$producto) {
-//     header("Location: index.php?status=4");
-//     exit;
-// }
-# Si no hay existencia...
+
 if ($producto['existencia'] < 1) {
-    header("Location: index.php?status=5");
+    header("Location: index.php?status=2");
     exit;
 }
 
@@ -56,7 +43,7 @@ if ($indice === false) {
     $cantidadExistente = $_SESSION["Baja"][$indice]['cantidad'];
     # si al sumarle uno supera lo que existe, no se agrega
     if ($cantidadExistente + 1 > $producto['existencia']) {
-        header("Location: index.php?status=5");
+        header("Location: index.php?status=3");
         exit;
     }
     $_SESSION["Baja"][$indice]['cantidad']++;

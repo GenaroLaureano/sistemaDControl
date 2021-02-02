@@ -17,7 +17,7 @@ $granTotal = 0;
   <div class="content-wrapper">
   <div class="content">
 	<div class="col-xs-12">
-		<h1><i class="fas fa-plus"></i> Nuevo Producto</h1>
+		<h1><i class="fas fa-cube"></i> Nuevo Producto</h1>
 
       <!-- <br><br> -->
 		<?php
@@ -25,37 +25,19 @@ $granTotal = 0;
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
-						</div>
-					<?php
-				}else if($_GET["status"] === "2"){
-					?>
-					<div class="alert alert-info">
-							<strong>Venta cancelada</strong>
-						</div>
-					<?php
-				}else if($_GET["status"] === "3"){
-					?>
-					<div class="alert alert-info">
-							<strong>Ok</strong> Producto quitado de la lista
-						</div>
-					<?php
-				}else if($_GET["status"] === "4"){
-					?>
-					<div class="alert alert-warning">
-							<strong>Error:</strong> El producto que buscas no existe
-						</div>
-					<?php
-				}else if($_GET["status"] === "5"){
-					?>
-					<div class="alert alert-danger">
-							<strong>Error: </strong>El producto está agotado
+							<strong>¡Correcto!</strong> Producto registrado correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else{
 					?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> Ya existe un producto con ese código.
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}
@@ -70,12 +52,12 @@ $granTotal = 0;
 	<!-- <h1>Nuevo producto</h1> -->
 	<form method="post" action="nuevo.php">
 		<label for="codigo">Código de barras:</label>
-		<input class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escribe el código">
+		<input class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escriba el nuevo código de barras">
 
 		<label for="descripcion">Descripción:</label>
 		<textarea required id="descripcion" name="descripcion" cols="30" rows="5" class="form-control"></textarea>
-
-		<br><br><input class="btn btn-info" type="submit" value="Guardar">
+		<br>
+		<input class="btn btn-primary" type="submit" value="Registrar">
 	</form>
 <!-- </div> -->
 

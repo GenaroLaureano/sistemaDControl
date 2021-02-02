@@ -6,6 +6,12 @@ if (!isset($_POST["codigo"])) {
 session_start();
 $sucursal= $_SESSION['sucursal'];
 $codigo = $_POST["codigo"]; 
+
+if($codigo===''){
+    header("Location: index.php");
+    exit;
+}
+
 include_once "../database/conexion.php"; 
 
 $sqlSelect = "SELECT productos.id, productos.codigo, productos.descripcion, sucursal.precioVenta,sucursal.existencia
@@ -21,4 +27,4 @@ if(!$resultSet->num_rows > 0){
 $producto = $resultSet->fetch_assoc();
 $_SESSION['busqueda'] = $producto;
 
-header("Location: index.php");
+header("Location: index.php?busqueda=1");

@@ -86,7 +86,7 @@ include '../sidebar/index.php';
 				}else{
 					?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> Algo salió mal mientras se realizaba la devolución
 							<a href="index.php">
                     <i class="fas fa-times-circle text-danger float-right"></i>
                     </a>
@@ -101,7 +101,7 @@ include '../sidebar/index.php';
 				?>
 		<form method="post" action="buscarVenta.php">
 			<label for="folio">Folio de la venta:</label>
-			<input autocomplete="off" autofocus class="form-control" name="folio" required type="text" id="folio" placeholder="Escribe el código">
+			<input autocomplete="off" autofocus class="form-control" name="folio" required type="number" id="folio" placeholder="Escribe el código">
 			<br>
             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
 		</form>
@@ -113,6 +113,10 @@ include '../sidebar/index.php';
 		<?php
 			if($_SESSION['devolucion'] != []){ 
 			$ventas = $_SESSION['devolucion'];
+			// if(isset($_GET["busqueda"])){
+			// if($_GET['busqueda'] === "1"){ 
+			// $ventas = $_SESSION['devolucion'];
+
 		?>
 
 		<table class="table table-bordered">
@@ -164,6 +168,7 @@ include '../sidebar/index.php';
 			</tbody>
 		</table>
 		<td>
+		<a href="limpiarBusqueda.php" class="btn btn-warning float-right">Limpiar Busqueda</a>
 		<?php 
 		$bandera = true;
 		?>
@@ -173,6 +178,9 @@ include '../sidebar/index.php';
 
 		<?php
 			}
+		// }else{
+		// 	$_SESSION['devolucion'] = [];
+		// 	}
 			// unset($_SESSION["devolucion"]);
 		?>
 	</div>
