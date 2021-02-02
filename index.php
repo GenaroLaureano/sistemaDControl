@@ -21,7 +21,7 @@
                 $_SESSION['rol'] = $row['usuario_role'];
                 $_SESSION['sucursal'] = $row['usuario_sucursal'];
                 if($_SESSION['rol'] == 'administrador'){
-                    header("Location: administrador-principal/index.php");
+                    header("Location: usuario-principal/index.php");
                     $_SESSION['nivel'] = '1';
                 }else{
                    header("Location: usuario-principal/index.php");
