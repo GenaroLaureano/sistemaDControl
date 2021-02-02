@@ -13,10 +13,6 @@ $existencia = abs($_POST["existencia"]);
 
 $sqlInsert ="INSERT INTO sucursal VALUES (null,$codigo,$precioCompra,$precioVenta,$existencia,$sucursal);";
 $conn->query($sqlInsert);
-
-// var_dump($sqlInsert);
-// exit;
-
 $valor = mysqli_affected_rows($conn);
 if($valor === -1){
 	header("Location: index.php?status=6");
