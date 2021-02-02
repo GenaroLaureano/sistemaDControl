@@ -1,5 +1,9 @@
 <?php 
 session_start();//inicia la sesion
+if($_SESSION['nivel']!=1){
+	header("Location: ../index.php");
+	exit;
+}
 if(isset($_SESSION) && (isset($_SESSION['logueado'])) == FALSE){
   // $rol = $_SESSION['rol'];
   header("Location: ../index.php");

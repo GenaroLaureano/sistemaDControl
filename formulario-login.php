@@ -9,7 +9,7 @@
                     <form method="post" action="index.php">
                         <div class="form-group">
                             <label for="usuario_nick">Usuario</label>
-                            <input type="text" class="form-control" placeholder="Introduzca su usuario o correo"
+                            <input type="text" class="form-control" placeholder="Introduzca su usuario"
                             id="usuario_nick" name="usuario_nick">
                         </div>
                         <div class="form-group">
@@ -17,7 +17,7 @@
                             <input type="password" class="form-control" placeholder="Introduzca su contraseña" id="usuario_password" name="usuario_password" required>
                         </div>
                         <div class="text-right">
-                            <input class="btn btn-info" type="submit" value="Acceder" name="btnLogin">
+                            <input class="btn btn-primary" type="submit" value="Acceder" name="btnLogin">
                         </div>
                     </form>
                     <?php

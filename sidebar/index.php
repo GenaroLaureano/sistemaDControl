@@ -106,7 +106,10 @@
             </a>
             <ul class="nav nav-treeview">
             
-              
+            <?php
+            if($_SESSION['nivel']===1){ 
+          echo $_SESSION['userName'];
+          ?>
             <li class="nav-item">
                 <a href="../producto-registrar/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -127,7 +130,9 @@
                   <p>Surtir sucursal</p>
                 </a>
               </li>
-
+              <?php
+            }
+          ?>
               <li class="nav-item">
                 <a href="../usuario-consulta/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
