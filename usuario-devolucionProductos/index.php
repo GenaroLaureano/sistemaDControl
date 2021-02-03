@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <form method="post" action="agregarCaja.php">
                             <label for="cuenta">Inicio con:</label>
-                            <input autocomplete="off" autofocus class="form-control" name="cuenta" required type="text"
+                            <input autocomplete="off" autofocus class="form-control" name="cuenta" required type="number"
                             id="cuenta" placeholder="Ingresa la cantidad con que inicia el turno">
                         </form>
                     </div>
@@ -106,7 +106,7 @@
                 <?php
                     if($vender){
                 ?>
-                <input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo"
+                <input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo"
                     placeholder="Escriba el código del producto">
                     <br>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Añadir</button>
@@ -114,7 +114,7 @@
                 <?php
                     }else{
                 ?>
-                    <input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo"
+                    <input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo"
                     placeholder="Escriba el código del producto" disabled>
                 <?php
                     }

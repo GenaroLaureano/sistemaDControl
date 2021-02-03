@@ -73,8 +73,9 @@
             </a>
             <ul class="nav nav-treeview">
             <?php
+            // session_start();
             if($_SESSION['nivel']===1){ 
-          echo $_SESSION['userName'];
+            // echo $_SESSION['userName'];s
           ?>
               <li class="nav-item">
                 <a href="../administrador-devoluciones/index.php" class="nav-link">
@@ -108,7 +109,8 @@
             
             <?php
             if($_SESSION['nivel']===1){ 
-          echo $_SESSION['userName'];
+              
+          // echo $_SESSION['userName'];
           ?>
             <li class="nav-item">
                 <a href="../producto-registrar/index.php" class="nav-link">
@@ -168,37 +170,91 @@
             </ul>
           </li>
 
-          
+          <?php
+            if($_SESSION['nivel']===1){ 
+              
+          // echo $_SESSION['userName'];
+          ?>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-            <i class="fas fa-store-alt"></i>
+            <i class="fas fa-user-friends"></i>
               <p>
-                Administrador
+                Usuarios
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../administrador-dasboard/index.php" class="nav-link">
+                <a href="../administrador-todosUsuarios/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <p>Consultar</p>
                 </a>
               </li>
-            </ul>
-
-            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../administrador-usuarios/index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Usuarios</p>
+                  <p>Agregar Usuario</p>
                 </a>
               </li>
             </ul>
 
           </li>
 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+            <i class="fas fa-shopping-basket"></i>
+              <p>
+                Ventas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../administrador-ventas/index.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Consultar</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+            <i class="fas fa-user-shield"></i>
+              <p>
+                Administrador
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../administrador-principal/index.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>General</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+         
+
+          <?php
+            }
+          ?>
+
+<li class="nav-item has-treeview">
+
+<a href="../salir.php" class="nav-link">
+<!-- <i class="fas fa-money-bill-wave"></i> -->
+<i class="fas fa-sign-out-alt"></i>
+<!-- <i class="nav-icon fas fa-edit"></i> -->
+  <p>
+    Salir
+    <!-- <i class="right fas fa-angle-left"></i> -->
+  </p>
+</a>
+</li>
           
          
         </ul>

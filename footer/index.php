@@ -17,5 +17,7 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="../../dist/js/demo.js"></script> -->
+<script src="js/JsBarcode.all.min.js"></script>
+<script src="js/barra.js"> </script>
 </body>
 </html>

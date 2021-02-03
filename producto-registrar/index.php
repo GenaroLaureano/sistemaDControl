@@ -56,7 +56,7 @@ $granTotal = 0;
 	<!-- <h1>Nuevo producto</h1> -->
 	<form method="post" action="nuevo.php">
 		<label for="codigo">Código de barras:</label>
-		<input class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escriba el nuevo código de barras">
+		<input class="form-control" name="codigo" required type="number" id="codigo" placeholder="Escriba el nuevo código de barras">
 
 		<label for="descripcion">Descripción:</label>
 		<textarea required id="descripcion" name="descripcion" cols="30" rows="5" class="form-control"></textarea>

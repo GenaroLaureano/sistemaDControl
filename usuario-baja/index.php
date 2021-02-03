@@ -82,7 +82,7 @@ $granTotal = 0;
 		<br>
 		<form method="post" action="agregarBaja.php">
 			<label for="codigo">Código:</label>
-			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escriba el código del producto">
+			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo" placeholder="Escriba el código del producto">
 			<br>
 			<button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Añadir</button>
 		</form>

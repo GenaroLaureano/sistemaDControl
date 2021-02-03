@@ -9,7 +9,7 @@ $venta= $_SESSION['devolucion']['id'];
 include_once "../database/conexion.php";
 date_default_timezone_set('America/Mexico_City');
 $ahora = date("Y-m-d H:i:s",time());
-$sqlInsert = "INSERT INTO devoluciones VALUES (null,'$ahora',$total,$venta,$usuario_id);";
+$sqlInsert = "INSERT INTO devoluciones VALUES (null,'$ahora',$total,$venta,$usuario_id,0);";
 $conn->query($sqlInsert);
 
 if(!$conn){

@@ -24,6 +24,6 @@ if($valor === -1){
 	exit;
 }
 
-	header("Location: index.php?status=1");
+	header("Location: ../administrador-todosUsuarios/index.php?status=1");
 
 ?>

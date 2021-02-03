@@ -12,8 +12,9 @@ include '../header/index.php';
 include '../navbar/index.php';
 include '../sidebar/index.php'; 
 
-if(!isset($_SESSION["add"])) $_SESSION["add"] = []; //si no existe la variable Baja la crea como un arreglo vacio
-// if(!isset($_SESSION["caja"])) $_SESSION["caja"] = 0;
+if(!isset($_SESSION["add"])) $_SESSION["add"] = [];
+if(!isset($_SESSION["seleccionarSucursal"])) $_SESSION["seleccionarSucursal"] = '';
+
 $granTotal = 0;
 
 ?>
@@ -29,31 +30,28 @@ $granTotal = 0;
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
+							<strong>¡Correcto!</strong> Surtido realizada correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "2"){
 					?>
 					<div class="alert alert-info">
-							<strong>Venta cancelada</strong>
-						</div>
-					<?php
-				}else if($_GET["status"] === "3"){
-					?>
-					<div class="alert alert-info">
-							<strong>Ok</strong> Producto quitado de la lista
+							<strong>Surtido de productos cancelado</strong>
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "4"){
 					?>
 					<div class="alert alert-warning">
-							<strong>Error:</strong> El producto que buscas no existe
-						</div>
-					<?php
-				}else if($_GET["status"] === "5"){
-					?>
-					<div class="alert alert-danger">
-							<strong>Error: </strong>El producto está agotado
+							<strong>Error:</strong> El producto que buscas no existe en tienda
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else{
@@ -66,11 +64,76 @@ $granTotal = 0;
 			}
 		?>
 		<br>
+
+
+
+		<?php
+			include '../database/conexion.php';
+		?>
+		<?php
+		if($_SESSION['seleccionarSucursal']===''){
+		?>
+		<form method="post" action="seleccionarSucursal.php" >
+		<select class="form-select" name='sucursal' id='sucursal'>
+		<option selected value=''>Seleccione la sucursal</option>		
+		<?php
+			$sqlSelect = "SELECT id, nombre FROM sucursales";
+			$resultSet = $conn->query($sqlSelect);
+			$resultSet = $conn->query($sqlSelect); 
+			if($resultSet->num_rows > 0){
+				while($row = $resultSet->fetch_assoc()){
+					$id = $row['id'];
+					$nombre = $row['nombre'];
+					echo "<option value=$id >$nombre</option>";
+				}
+			}
+		?>
+		</select>
+		<br>
+		<!-- <input type="submit"class="btn btn-primary" value="Consultar" >  -->
+
+		<button type="submit" class="btn btn-primary"><i class="fas fa-hand-pointer"></i> Seleccionar</button>
+		</form>
+		<br>
+		<?php
+		}
+		?>
+		
+		<?php
+			if($_SESSION['seleccionarSucursal']!=''){
+				$sucusalID = $_SESSION['seleccionarSucursal'];
+				$sqlSelect = "SELECT nombre FROM sucursales WHERE id=$sucusalID";
+				$resultSet = $conn->query($sqlSelect);
+				$row = $resultSet->fetch_assoc();
+				$nombreSucursal = $row['nombre'];
+		?>
+
+			<h4><?php echo $nombreSucursal?></h4>
+
+		<?php		
+			} 
+		?>
+
+
+
+
 		<form method="post" action="agregarBaja.php">
 			<label for="codigo">Código:</label>
-			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo" placeholder="Escriba el código del producto">
+			<?php
+			if($_SESSION['seleccionarSucursal']!=''){
+			?>
+			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo" placeholder="Escriba el código del producto">
 			<br>
 			<button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Añadir</button>
+			<?php
+			}else{
+			?>
+			<input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo" placeholder="Escriba el código del producto" disabled>
+			
+			<?php
+			}
+			?>
+
 		</form>
 		<br><br>
 
@@ -106,14 +169,13 @@ $granTotal = 0;
 				<?php } ?>
 			</tbody>
 		</table>
+		<?php } ?>
 
-		<!-- <h3>Total: <?php echo $granTotal; ?></h3> -->
 		<form action="terminarBaja.php" method="POST">
-			<!-- <input name="total" type="hidden" value="<?php echo $granTotal;?>"> -->
 			<button type="submit" class="btn btn-success">Agregar a Tienda</button>
 			<a href="cancelarBaja.php" class="btn btn-danger">Cancelar</a>
 		</form>
-		<?php } ?>			
+			
 
 	</div>
   </div>

@@ -7,7 +7,7 @@ $sucursal= $_SESSION['sucursal'];
 $codigo = $_POST["codigo"]; 
 include_once "../database/conexion.php"; 
 
-$sqlSelect = "SELECT sucursal.existencia, productos.id, productos.codigo, productos.descripcion, sucursal.precioVenta FROM sucursal INNER JOIN productos ON sucursal.id=productos.id WHERE productos.codigo='$codigo' AND sucursal.sucursal=$sucursal;";
+$sqlSelect = "SELECT sucursal.existencia, productos.id, productos.codigo, productos.descripcion, sucursal.precioVenta FROM sucursal INNER JOIN productos ON sucursal.producto=productos.id WHERE productos.codigo='$codigo' AND sucursal.sucursal=$sucursal;";
 $resultSet = $conn->query($sqlSelect);
 
 //SI NO SE OBTUVO NINGUN REGISTRO

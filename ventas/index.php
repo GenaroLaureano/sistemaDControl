@@ -1,14 +1,20 @@
 <?php 
 session_start();//inicia la sesion
+if(!$_GET['sucursal']) exit();
+if($_SESSION['nivel']!=1){
+	header("Location: ../index.php");
+	exit;
+}
 if(isset($_SESSION) && (isset($_SESSION['logueado'])) == FALSE){
-  // $rol = $_SESSION['rol'];
   header("Location: ../index.php");
 }
+
 // $sucursal= $_SESSION['sucursal'];
 include '../header/index.php';
 include '../navbar/index.php';
 include '../sidebar/index.php'; 
 $sucursal= $_SESSION['sucursal'];
+$sucursalFinal = $_GET['sucursal'];
 if(!isset($_SESSION["carrito"])) $_SESSION["carrito"] = []; //si no existe la variable carrito la crea como un arreglo vacio
 // if(!isset($_SESSION["caja"])) $_SESSION["caja"] = 0;
 $granTotal = 0;
@@ -17,7 +23,7 @@ $granTotal = 0;
   <div class="content-wrapper">
   <div class="content">
 	<div class="col-xs-12">
-		<h1><i class="fas fa-tasks"></i> Consulta</h1>
+		<h1><i class="fas fa-shopping-basket"></i> Ventas</h1>
 
       <!-- <br><br> -->
 		<?php
@@ -25,7 +31,10 @@ $granTotal = 0;
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
+						<strong>¡Correcto!</strong> Usuario agregado correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else if($_GET["status"] === "2"){
@@ -61,7 +70,7 @@ $granTotal = 0;
 				}
 			}
 		?>
-		<br>
+		<!-- <br> -->
 
 
 
@@ -76,50 +85,16 @@ $granTotal = 0;
 		<?php
 			include '../database/conexion.php';
 		?>
-
-		<form method="post" action="index.php" >
-		<select class="form-select" name='sucursal' id='sucursal'>
-		<option selected value=''>Seleccione la sucursal</option>		
-		<?php
-			$sqlSelect = "SELECT id, nombre FROM sucursales";
-			$resultSet = $conn->query($sqlSelect);
-			$resultSet = $conn->query($sqlSelect); 
-			if($resultSet->num_rows > 0){
-				while($row = $resultSet->fetch_assoc()){
-					$id = $row['id'];
-					$nombre = $row['nombre'];
-					echo "<option value=$id >$nombre</option>";
-				}
-			}
-		?>
-		</select>
+		<a href="../administrador-principal/index.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Regresar</a>
+		
 		<br>
-		<input type="submit"class="btn btn-primary" value="Consultar" > 
-
-		</form>
 		<br>
+		<!-- <br> -->
 		<?php
-
-		if(isset($_POST['sucursal'])){
-			if($_POST['sucursal']===''){
-				?>
-					<div class="alert alert-danger">
-							<strong>Error:</strong> No se pudo realizar la busqueda
-							<a href="index.php">
-							<i class="fas fa-times-circle text-danger float-right"></i>
-							</a>
-						</div>
-					<?php
-					exit;
-			}
-			$sucursalSelect = (int)$_POST["sucursal"];
-			// var_dump($sucursalSelect);
-			// exit;
-			// $sqlSelect ="SELECT * FROM productos WHERE codigo = $codigo";
-			$sqlSelect = "SELECT productos.codigo, productos.descripcion ,sucursal.precioVenta, sucursal.existencia, sucursal.sucursal
-			FROM sucursal INNER JOIN productos ON sucursal.producto = productos.id  WHERE sucursal.sucursal=$sucursalSelect;";
+			date_default_timezone_set('America/Mexico_City');
+			$fechaInicio= date('Y-m-d 00:00:00',time());
+			$sqlSelect = "SELECT id,fecha,total,usuario FROM ventas WHERE sucursal = $sucursalFinal AND fecha > '$fechaInicio';";
 			$resultSet = $conn->query($sqlSelect);
-			
 			if($resultSet->num_rows >0 ){
 				
 		?>
@@ -128,10 +103,11 @@ $granTotal = 0;
 			<thead>
 				<tr>
 					<!-- <th>ID</th> -->
-					<th>Código</th>
-					<th>Descripción</th>
-					<th>Precio de venta</th>
-					<th>DISPONIBILIDAD</th>
+					<th>ID</th>
+					<th>Fecha</th>
+					<th>Total</th>
+					<th>Usuario</th>
+
 					<!-- <th>Editar</th> -->
 					<!-- <th>Eliminar</th> -->
 				</tr>
@@ -141,32 +117,33 @@ $granTotal = 0;
 			while($producto = $resultSet->fetch_assoc()){
 			?>
 				<tr>
-					<td><?php echo $producto['codigo'];?></td>
-					<td><?php echo $producto['descripcion']; ?></td>
-					<td><?php echo $producto['precioVenta'] ?></td>
-					<?php 
-						if($producto['sucursal'] === $sucursal || $_SESSION['nivel']===1){
-					?>
-
-					<td><?php echo $producto['existencia']?></td>
-					<?php
-						}else{
-					?>
-						<td><?php echo ($producto['existencia'] > 0) ? 'DISPONIBLE' : 'NO DISPONIBLE';?></td>
+					<td><?php echo $producto['id'];?></td>
+					<td><?php echo $producto['fecha']; ?></td>
+					<td><?php echo $producto['total'] ?></td>
+					<td><?php echo $producto['usuario'] ?></td>
+				
 					</tr>	
 				<?php
 						}
+			}else{
+				?>
+
+
+						<div class="alert alert-info">
+							<strong>Mensaje:</strong> No se encontraron ventas
+							<a href="../administrador-principal/index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
+						</div>
+				<?php
+
+
 			}
 			?>
 			</tbody>
 		</table>
 
-		<?php
-				
-			}
-			}
-		?>
-
+	
 
 
 	</div>

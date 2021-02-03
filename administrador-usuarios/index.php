@@ -1,5 +1,9 @@
 <?php 
 session_start();//inicia la sesion
+if($_SESSION['nivel']!=1){
+	header("Location: ../index.php");
+	exit;
+}
 if(isset($_SESSION) && (isset($_SESSION['logueado'])) == FALSE){
   // $rol = $_SESSION['rol'];
   header("Location: ../index.php");
@@ -16,7 +20,7 @@ $granTotal = 0;
   <div class="content-wrapper">
   <div class="content">
 	<div class="col-xs-12">
-		<h1><i class="fas fa-minus"></i> Surtir</h1>
+		<h1><i class="fas fa-user-plus"></i> Agregar Usuario</h1>
 
   
       <!-- <br><br> -->
@@ -25,37 +29,19 @@ $granTotal = 0;
 				if($_GET["status"] === "1"){
 					?>
 						<div class="alert alert-success">
-							<strong>¡Correcto!</strong> Venta realizada correctamente
-						</div>
-					<?php
-				}else if($_GET["status"] === "2"){
-					?>
-					<div class="alert alert-info">
-							<strong>Venta cancelada</strong>
-						</div>
-					<?php
-				}else if($_GET["status"] === "3"){
-					?>
-					<div class="alert alert-info">
-							<strong>Ok</strong> Producto quitado de la lista
-						</div>
-					<?php
-				}else if($_GET["status"] === "4"){
-					?>
-					<div class="alert alert-warning">
-							<strong>Error:</strong> El producto que buscas no existe
-						</div>
-					<?php
-				}else if($_GET["status"] === "5"){
-					?>
-					<div class="alert alert-danger">
-							<strong>Error: </strong>El producto está agotado
+							<strong>¡Correcto!</strong> Usuario agregado correctamente
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}else{
 					?>
 					<div class="alert alert-danger">
-							<strong>Error:</strong> Algo salió mal mientras se realizaba la venta
+							<strong>Error:</strong> Algo salió mal mientras se registraba el usuario
+							<a href="index.php">
+							<i class="fas fa-times-circle text-danger float-right"></i>
+							</a>
 						</div>
 					<?php
 				}
@@ -67,38 +53,38 @@ $granTotal = 0;
           <form method="post" action="agregarUsuario.php">
             <!-- <div class="form-group"> -->
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del usuario" required>
             <!-- </div> -->
 			<!-- <div class="form-group"> -->
                 <label for="apellidos">Apellidos</label>
-                <input type="text" class="form-control" name="apellidos" placeholder="apellidos " required>
+                <input type="text" class="form-control" name="apellidos" placeholder="Ingrese los apellidos del usuario " required>
             <!-- </div> -->
             <!-- <div class="form-group"> -->
                 <label for="nick">Usuario</label>
-                <input type="text" class="form-control" name="nick" placeholder="Nombre de usuario">
+                <input type="text" class="form-control" name="nick" placeholder="Ingrese el nickname del usuario (con este ingresara el sistema)" required>
             <!-- </div> -->
 
             <!-- <div class="form-group"> -->
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control" name ="password"  placeholder="Contraseña">
+                <input type="password" class="form-control" name ="password"  placeholder="Ingrese la nueva contraseña del usuario" required>
             <!-- </div> -->
 
             <!-- <div class="form-group"> -->
-              <label for="rol">Rol de usuario</label>
-			  <select class="form-select" name='rol'>
-				<option selected value=''>Seleccione la sucursal</option>	
+              <label for="rol">Seleccione el rol de usuario</label>
+			  <select class="form-select" name='rol' required>
+				<option selected value=''>Seleccione el rol</option>	
 				<option value='administrador' >Administrador</option>
 				<option value='usario' >Usuario</option>
 				</select>
-               <br>
+               <!-- <br> -->
 
 			<?php
 			include '../database/conexion.php';
 			?>
 
-			<label for="sucursal">Sucursals</label>
+			<label for="sucursal">Seleccione la sucursal de trabajo del usuario</label>
 			
-			<select class="form-select" name='sucursal'>
+			<select class="form-select" name='sucursal' required>
 		<option selected value=''>Seleccione la sucursal</option>		
 		<?php
 			$sqlSelect = "SELECT id, nombre FROM sucursales";
@@ -118,7 +104,7 @@ $granTotal = 0;
 
             <!-- </div> -->
             <!-- <div class="form-group"> -->
-              <button type="submit" name="add_user" class="btn btn-primary">Guardar</button>
+              <button type="submit" name="add_user" class="btn btn-primary">Agregar</button>
             <!-- </div> -->
         </form>
         </div>

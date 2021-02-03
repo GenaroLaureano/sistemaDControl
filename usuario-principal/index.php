@@ -14,7 +14,7 @@
     <div class="content">
         <div class="col-xs-12">
         <!-- Encabezado -->
-            <h1><i class="fas fa-cash-register"></i>Caja</h1>
+            <h1><i class="fas fa-cash-register"></i> Caja</h1>
             <!-- INPUT DE INICIO DE TURNO -->
             <?php
                 include_once "../database/conexion.php";
@@ -108,7 +108,7 @@
                 <?php
                     if($vender){
                 ?>
-                <input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo"
+                <input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo"
                     placeholder="Escriba el código del producto">
                     <br>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Añadir</button>
@@ -116,7 +116,7 @@
                 <?php
                     }else{
                 ?>
-                    <input autocomplete="off" autofocus class="form-control" name="codigo" required type="text" id="codigo"
+                    <input autocomplete="off" autofocus class="form-control" name="codigo" required type="number" id="codigo"
                     placeholder="Escriba el código del producto" disabled>
                 <?php
                     }

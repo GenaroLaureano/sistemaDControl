@@ -39,7 +39,7 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 		<br>
 		<form method="post" action="agregarABusqueda.php">
 			<label for="codigo">Código:</label>
-			<input autocomplete="off" autofocus class="form-control" name="codigo" type="text" id="codigo" placeholder="Escriba el código del producto">
+			<input autocomplete="off" autofocus class="form-control" name="codigo" type="number" id="codigo" placeholder="Escriba el código del producto">
 			<br>
 			<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
 		</form>

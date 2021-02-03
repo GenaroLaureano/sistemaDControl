@@ -4,7 +4,8 @@ if (!isset($_POST["codigo"])) { //si no lo desencadeno un  codigo termina la eje
 }
 
 session_start();
-$sucursal= $_SESSION['sucursal'];
+$sucursal= $_SESSION["seleccionarSucursal"];
+
 $codigo = $_POST["codigo"]; //obten el codigo del producto
 include_once "../database/conexion.php"; //llamada a la bd
 $sqlSelect = "SELECT productos.id, productos.codigo, productos.descripcion, sucursal.precioVenta,sucursal.existencia
@@ -31,10 +32,10 @@ $producto = $resultSet->fetch_assoc();
 //     exit;
 // }
 # Si no hay existencia...
-if ($producto['existencia'] < 1) {
-    header("Location: index.php?status=5");
-    exit;
-}
+// if ($producto['existencia'] < 1) {
+//     header("Location: index.php?status=5");
+//     exit;
+// }
 
 session_start(); 
 # Buscar producto dentro del cartito
@@ -55,10 +56,10 @@ if ($indice === false) {
     # Pero espera, tal vez ya no haya
     $cantidadExistente = $_SESSION["add"][$indice]['cantidad'];
     # si al sumarle uno supera lo que existe, no se agrega
-    if ($cantidadExistente + 1 > $producto['existencia']) {
-        header("Location: index.php?status=5");
-        exit;
-    }
+    // if ($cantidadExistente + 1 > $producto['existencia']) {
+    //     header("Location: index.php?status=5");
+    //     exit;
+    // }
     $_SESSION["add"][$indice]['cantidad']++;
     $_SESSION["add"][$indice]['total'] = $_SESSION["add"][$indice]['cantidad'] * $_SESSION["add"][$indice]['precioVenta'];
 }

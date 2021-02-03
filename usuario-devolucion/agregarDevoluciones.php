@@ -40,7 +40,7 @@ if ($indice === false) {
     $producto['cantidad'] = 1;
     $producto['total'] = $producto['precioVenta'];
     include_once "../database/conexion.php"; 
-    $sqlSelect = "SELECT productos.id, productos.codigo FROM sucursal INNER JOIN productos ON sucursal.id=productos.id WHERE productos.codigo='$codigo' AND sucursal.sucursal=$sucursal;";
+    $sqlSelect = "SELECT productos.id, productos.codigo FROM sucursal INNER JOIN productos ON sucursal.producto=productos.id WHERE productos.codigo='$codigo' AND sucursal.sucursal=$sucursal;";
     $resultSet = $conn->query($sqlSelect);
     if(!$resultSet->num_rows > 0){
         header("Location: index.php?status=10");

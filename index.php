@@ -2,8 +2,8 @@
     session_start();
     include 'header/index.php';
     if(isset($_SESSION) && (isset($_SESSION['logueado'])) == TRUE){
-        $rol = $_SESSION['rol'];
-        header("Location: $rol-principal/index.php");
+        // $rol = $_SESSION['rol'];
+        header("Location: usuario-principal/index.php");
     }
     if(isset($_POST['btnLogin'])){
         include 'database/conexion.php';
@@ -21,11 +21,13 @@
                 $_SESSION['rol'] = $row['usuario_role'];
                 $_SESSION['sucursal'] = $row['usuario_sucursal'];
                 if($_SESSION['rol'] == 'administrador'){
+                    $_SESSION['nivel'] = 1;
+
                     header("Location: usuario-principal/index.php");
-                    $_SESSION['nivel'] = '1';
                 }else{
+                   $_SESSION['nivel'] = 2;
+
                    header("Location: usuario-principal/index.php");
-                   $_SESSION['nivel'] = '2';
                 }
         }else{
             $errmensaje = "CREDENCIALES NO VALIDAS";

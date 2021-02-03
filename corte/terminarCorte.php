@@ -17,8 +17,6 @@ if(!$conn){
 }
 $entradas = $_SESSION['entrada'];
 $ventas = $_SESSION['ventas'];
-$devoluciones = $_SESSION['dev'];
-
 
 foreach($entradas as $entrada){
     $id = $entrada['folio'];
@@ -33,16 +31,6 @@ foreach($entradas as $entrada){
 foreach($ventas as $venta){
     $id = $venta['folio'];
     $sqlUpdate = "UPDATE ventas SET corte = 1 WHERE id = $id";
-    $conn->query($sqlUpdate);
-    if(!$conn){
-        header("Location: index.php?status=6");
-        exit;
-    }
-}
-
-foreach($devoluciones as $dev){
-    $id = $dev['folio'];
-    $sqlUpdate = "UPDATE devoluciones SET corte = 1 WHERE id = $id";
     $conn->query($sqlUpdate);
     if(!$conn){
         header("Location: index.php?status=6");
