@@ -17,7 +17,15 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="../../dist/js/demo.js"></script> -->
-<script src="js/JsBarcode.all.min.js"></script>
-<script src="js/barra.js"> </script>
 </body>
 </html>
+<!-- 
+<script type="text/javascript">
+  JsBarcode("#barcode", "1010", {
+  format: "pharmacode",
+  lineColor: "#000",
+  width: 4,
+  height: 40,
+  displayValue: true
+});
+</script> -->

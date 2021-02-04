@@ -1,1 +1,0 @@
-JsBarcode("#barcode", "Hi world!");

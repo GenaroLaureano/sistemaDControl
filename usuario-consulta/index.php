@@ -60,6 +60,7 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 					<th>Descripción</th>
 					<th>Precio</th>
 					<th>Existencia</th>
+					<th>código de barras</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,6 +70,10 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 					<td><?php echo $producto['descripcion'] ?></td>
 					<td><?php echo $producto['precioVenta'] ?></td>
 					<td><?php echo $producto['existencia'] ?></td>
+					<td><svg id="barcode"></svg></td>
+					<script>
+						JsBarcode("#barcode", <?php echo $producto['codigo'] ?>);
+					</script>
 				</tr>
 			
 			</tbody>
@@ -92,17 +97,21 @@ if(!isset($_SESSION["busqueda"])) $_SESSION["busqueda"] = [];
 					<th>Descripción</th>
 					<th>Precio</th>
 					<th>Existencia</th>
+					<th>código de barras</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php 
 			while($producto = $resultSet->fetch_assoc()){
+				$codigo = $producto['codigo'];
 			?>
 				<tr>
 					<td><?php echo $producto['codigo'] ?></td>
 					<td><?php echo $producto['descripcion'] ?></td>
 					<td><?php echo $producto['precioVenta'] ?></td>
 					<td><?php echo $producto['existencia'] ?></td>
+					
+					<td><img src="../img/codigo<?php echo $codigo ?>.png" alt="codigo"></td>
 				</tr>
 			<?php
 			}
